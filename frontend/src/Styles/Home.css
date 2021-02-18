@@ -1,0 +1,11 @@
+.button-container{
+    display: flex;
+    padding: 0vw 35vw;
+    margin-top: 20vh;
+    justify-content: space-between;
+}
+.link{
+    background-color: whitesmoke;
+    padding: 15px 20px;
+    font-size: 0.9rem;
+}

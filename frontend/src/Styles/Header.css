@@ -1,0 +1,13 @@
+h1{
+    text-align: center;
+    padding-top: 10vh;
+}
+.link {
+    background-color: whitesmoke;
+    padding: 15px 20px;
+    font-size: 0.9rem;
+}
+.header{
+    background-color: rgb(151, 148, 148);
+    padding-bottom: 5vh;
+}
