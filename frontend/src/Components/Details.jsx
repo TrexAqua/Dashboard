@@ -13,6 +13,7 @@ const Details = () => {
     },[])
     return (
         <div>
+            
             <Header title='Details Page' />
             <Table className='table' responsive size="sm" striped bordered>
                 <thead>
@@ -47,6 +48,7 @@ const Details = () => {
                 </tbody>
             </Table>
         </div>
+        
     )
 }
 

@@ -41,6 +41,21 @@ const getUniqueSystemName = async (req, res) => {
     });
   });
 };
+
+const getAppNameByDropdown = async (req, res) => {
+  const sql = "SELECT Applname FROM dashboard WHERE Systemnm=?";
+  const query = await db.query(sql, [req.params.name], (err, results) => {
+    if (err) {
+      throw err;
+    }
+    console.log(results);
+    res.json({
+      message: "App Names Fetched",
+      data: results,
+    });
+  });
+};
+
 const filterBySystemName = async (req, res) => {
   const sql = "SELECT * FROM dashboard WHERE Systemnm=?";
   const query = await db.query(sql, [req.params.name], (err, results) => {
@@ -55,6 +70,26 @@ const filterBySystemName = async (req, res) => {
       });
     }
   });
+};
+
+const getBySystemAndAppName = async (req, res) => {
+  const sql = "SELECT * FROM dashboard WHERE (Systemnm, Applname) = (?,?)";
+  const query = await db.query(
+    sql,
+    [req.params.systemname, req.params.appname],
+    (err, results) => {
+      if (err) {
+        throw err;
+      }
+      if (results) {
+        console.log(results);
+        res.json({
+          message: "System Names Fetched",
+          data: results,
+        });
+      }
+    }
+  );
 };
 
 const getJobCatalog = async (req, res) => {
@@ -92,4 +127,6 @@ export {
   getDetailsReport,
   getUniqueSystemName,
   filterBySystemName,
+  getAppNameByDropdown,
+  getBySystemAndAppName,
 };

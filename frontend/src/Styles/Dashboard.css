@@ -8,3 +8,6 @@ th{
 .system{
     margin: 2vh 19vw;
 }
+.dropdown-container{
+    display: flex;
+}

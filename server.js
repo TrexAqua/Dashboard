@@ -8,6 +8,8 @@ import {
   getDetailsReport,
   getUniqueSystemName,
   filterBySystemName,
+  getAppNameByDropdown,
+  getBySystemAndAppName,
 } from "./Controllers/databaseControllers.js";
 //ENV variables
 dotenv.config();
@@ -40,6 +42,10 @@ app.get("/report", getDetailsReport);
 app.get("/system", getUniqueSystemName);
 //Filter by system name
 app.get("/filtersystem/:name", filterBySystemName);
+//Get App name by selected System Name
+app.get("/appname/:name", getAppNameByDropdown);
+//Get the rows with system name and app name
+app.get("/related/:systemname/:appname", getBySystemAndAppName);
 
 app.listen(5000, () => {
   console.log(`Server running on Port 5000...`);

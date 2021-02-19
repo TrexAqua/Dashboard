@@ -1,11 +1,22 @@
 .button-container{
     display: flex;
-    padding: 0vw 35vw;
+    padding: 0vw 30vw;
     margin-top: 20vh;
     justify-content: space-between;
+    flex-direction: column;
 }
 .link{
     background-color: whitesmoke;
     padding: 15px 20px;
+    margin-bottom: 2vw;
     font-size: 0.9rem;
+}
+.login-container{
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.login-container h2{
+    text-align: center;
+    padding-top: 5vh;
 }

@@ -2,21 +2,30 @@ import React, { useState, useEffect } from 'react'
 import { Table, Dropdown, DropdownButton } from 'react-bootstrap';
 import Header from './Header'
 import '../Styles/Dashboard.css'
+import { Button } from 'react-bootstrap';
 
 const Dashboard = () => {
 
     const [data, setData] = useState([]);
     const [systems, setSystems] = useState([]);
     const [systemName, setSystemName] = useState('');
+    const [appNames, setAppNames] = useState([]);
+    const [singleAppName, setSingleAppName] = useState('')
 
     const clickHandler = (e) => {
         setSystemName(e.target.textContent)
-        console.log(systemName)
     }
+
+    const clickHandlerForApp = (e) => {
+        setSingleAppName(e.target.textContent)
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
 
     useEffect(() => {
         const fetchData = async () => {
-            const { data } = await fetch('/dashboard').then(data => data.json())
+            const { data } = await fetch('/dashboard' ).then(data => data.json())
             setData(data)
         }
         fetchData()
@@ -24,23 +33,49 @@ const Dashboard = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const { data } = await fetch('/system').then(data => data.json())
+            const { data } = await fetch('/system' ).then(data => data.json())
             setSystems(data)
         }
         fetchData()
     }, [])
 
     useEffect(() => {
-        const fetchData = async () => {
+        if (systemName !== '') {
+            const fetchData = async () => {
             const { data } = await fetch(`/filtersystem/${systemName}`).then(data => data.json())
             setData(data)
         }
-        fetchData()
-    },[systemName])
+            fetchData()
+        }
+        
+    }, [systemName])
+
+    useEffect(() => {
+        if (systemName !== '') {
+            const fetchData = async () => {
+                const { data } = await fetch(`/appname/${systemName}`).then(data => data.json())
+                setAppNames(data)
+                console.log(data)
+            }
+            fetchData()
+        }
+    }, [systemName])
+    
+    useEffect(() => {
+        if (singleAppName !== '') {
+            const fetchData = async () => {
+                const { data } = await fetch(`/related/${systemName}/${singleAppName}`).then(data => data.json())
+                setData(data)
+                console.log(data)
+            }
+            fetchData()
+        }
+    },[singleAppName, systemName])
 
     return (
         <div>
             <Header title='Dashboard' />
+            <div className='dropdown-container'>
             <DropdownButton id="dropdown-item-button" title="Select System">
                 {systems.map(x => {
                     return (
@@ -48,7 +83,19 @@ const Dashboard = () => {
                     )
                 })}
             </DropdownButton>
+            {/* //if there is any system selected then only this code will run*/}
+            {systemName && <DropdownButton id="dropdown-item-button" title="Select App Name">
+                {appNames.map(x => {
+                    return (
+                        <Dropdown.Item onClick={clickHandlerForApp}>{x.Applname}</Dropdown.Item>                 
+                    )
+                })}
+                </DropdownButton>      
+            }
+            </div>
             <h3 className='system'>System: {systemName}</h3>
+            {systemName && <h3>App Name : {singleAppName}</h3>}
+
             <Table className='table' responsive size="sm" striped bordered>
                 <thead>
                     <tr>
