@@ -1,0 +1,32 @@
+header{
+    min-height: 10vh;
+    font-size: 1.4rem;
+}
+header h4{
+    padding: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.link-container{
+    display: flex;
+    justify-content: space-around;
+    background-color: whitesmoke;
+    min-height: 20vh;
+    align-items: center;
+}
+.link-container .link{
+    margin-top: 2vh;
+    padding: 10px;
+    background-color: #888;
+    border-radius: 5%;
+}
+ul{
+    background-color: whitesmoke;
+    min-height: 20vh;
+    padding: 0 30vw;
+}
+.contain{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: whitesmoke;
+}

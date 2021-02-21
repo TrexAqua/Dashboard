@@ -6,8 +6,13 @@ th{
     margin: 2vh 20vw;
 }
 .system{
-    margin: 2vh 19vw;
+    margin: 2vh 10vw;
 }
 .dropdown-container{
     display: flex;
+}
+.heading-container {
+    min-width: 100%;
+    display: flex;
+    justify-content: space-around;
 }

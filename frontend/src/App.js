@@ -4,6 +4,8 @@ import Dashboard from "./Components/Dashboard";
 import Catalog from "./Components/Catalog";
 import Details from "./Components/Details";
 import Home from "./Components/Home.jsx";
+import Development from "./Components/Delevopment";
+
 import "./App.css";
 
 const App = () => {
@@ -13,6 +15,7 @@ const App = () => {
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/catalog" component={Catalog} />
       <Route path="/details" component={Details} />
+      <Route path="/development" component={Development} />
     </Router>
   );
 };

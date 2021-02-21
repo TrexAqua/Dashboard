@@ -1,54 +1,33 @@
-import React, {useState, useEffect} from 'react'
-import Header from './Header'
-import { Table } from 'react-bootstrap'
-const Details = () => {
+import React from 'react'
+import { Button } from 'react-bootstrap'
+import {Link} from 'react-router-dom'
+import '../Styles/Details.css'
 
-    const [data, setData] = useState([])
-    useEffect(() => {
-        const fetchData = async () => {
-            const { data } = await fetch('/report').then(data => data.json())
-            setData(data)
-        }
-        fetchData()
-    },[])
+const Details = ({history}) => {
+    const clickHandler = () => {
+        history.push('/')
+    }
+
     return (
         <div>
-            
-            <Header title='Details Page' />
-            <Table className='table' responsive size="sm" striped bordered>
-                <thead>
-                    <tr>
-                    <th>ID</th>
-                    <th>Jobnm</th>
-                    <th>Appname</th>
-                    <th>Reportnm</th>
-                    <th>Scno</th>
-                    <th>Scdesc</th>
-                    <th>input</th>
-                    <th>ExpectedResult</th>
-                    <th>ActualResult</th>
-                    <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.map(x => (
-                        <tr key={x.id}>
-                            <td>{x.id}</td>
-                            <td>{x.Jobnm}</td>
-                            <td>{x.Appname}</td>
-                            <td>{x.Reportnm}</td>
-                            <td>{x.Scno}</td>
-                            <td>{x.Scdesc}</td>
-                            <td>{x.input}</td>
-                            <td>{x.ExpectedResult}</td>
-                            <td>{x.ActualResult}</td>
-                            <td>{x.Status}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
+            <header>
+                <h4>Details</h4>
+            </header>
+            <div className='link-container'>
+                <Link className='link' to='/dashboard'>AUTOMATION DASHBOARD</Link>
+                <Link className='link' to='/dashboard'>SMOKE TEST</Link>
+                <Link className='link' to='/dashboard'>MANUAL TEST</Link>
+                <Link className='link' to='/dashboard'>REPORTS</Link>
+            </div>
+            <ul>
+                <li>Test Environment</li>
+                <li>Stage Environment</li>
+                <li>Production Environment</li>
+            </ul>
+            <div className='contain'>
+                <Button onClick={clickHandler}>Back To MainMenu</Button>
+            </div>
         </div>
-        
     )
 }
 

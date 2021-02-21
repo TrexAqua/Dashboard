@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { Table, Dropdown, DropdownButton } from 'react-bootstrap';
 import Header from './Header'
 import '../Styles/Dashboard.css'
-import { Button } from 'react-bootstrap';
 
 const Dashboard = () => {
 
@@ -93,8 +92,11 @@ const Dashboard = () => {
                 </DropdownButton>      
             }
             </div>
-            <h3 className='system'>System: {systemName}</h3>
-            {systemName && <h3>App Name : {singleAppName}</h3>}
+            <div className='heading-container'>
+                <h3 className='system'>System: {systemName}</h3>
+            {systemName  && <h3 className='app'>App Name : {singleAppName}</h3>}
+            </div>
+            
 
             <Table className='table' responsive size="sm" striped bordered>
                 <thead>
