@@ -15,7 +15,7 @@ const Home = ({history}) => {
         } else if(!password){
             alert('Please enter your Password')
         } else {
-            history.push('/dashboard')
+            history.push('/details')
         }
         
         

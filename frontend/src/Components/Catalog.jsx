@@ -1,49 +1,190 @@
-import React, { useState, useEffect } from 'react'
-import {Table} from 'react-bootstrap'
-import Header from './Header'
+import React from 'react'
+import {Table , DropdownButton, Button} from 'react-bootstrap'
+import DropdownItem from 'react-bootstrap/esm/DropdownItem'
+import { Link } from 'react-router-dom'
 
-const Catalog = () => {
+const Catalog = ({history}) => {
+  const clickHandler = () => {
+    history.push('/')
+  }
 
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const { data } = await fetch('/catalog').then(data => data.json())
-            setData(data)
-            console.log(data)
-        }
-        fetchData()
-    },[])
 
     return (
         <div>
-            <Header title='Catalog Page' />
-            <Table className='table' responsive size="sm" striped bordered>
-                <thead>
-                    <tr>
-                    <th>ID</th>
-                    <th>Jobnm</th>
-                    <th>Appname</th>
-                    <th>Appdesc</th>
-                    <th>TestScenarioxls</th>
-                    <th>Runcommand</th>
-                    <th>testtype</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.map(x => (
-                        <tr key={x.id}>
-                            <td>{x.id}</td>
-                            <td>{x.Jobnm}</td>
-                            <td>{x.Appname}</td>
-                            <td>{x.Appdesc}</td>
-                            <td>{x.TestScenarioxls}</td>
-                            <td>{x.Runcommand}</td>
-                            <td>{x.testtype}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
+    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                <h1 >Simcord Automation Testing Tool - SAAT</h1>
+                <h3>ReportCatalog - Simpcord Test Automation</h3>
+                Choose a report <DropdownButton title='Reports on the Page:'>
+                  <DropdownItem>Adhoc</DropdownItem>
+                  <DropdownItem>Adhoc</DropdownItem>
+                  <DropdownItem>Adhoc</DropdownItem>
+                </DropdownButton>
+    </div>
+    <Table striped bordered hover size="sm">
+  <thead>
+    <tr>
+      <th>ReportCatalog</th>
+      <th>Description</th>
+      <th>Featurefile</th>
+      <th>Immediate Execution</th>
+      <th>TestType</th>
+      <th>Action</th>
+      <th>Schedule</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td><Link to='/basetable'>ShowReports</Link></td>
+      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
+    </tr>
+    <tr>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td><Link to='/basetable'>ShowReports</Link></td>
+      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
+    </tr>
+    <tr>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td><Link to='/basetable'>ShowReports</Link></td>
+      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
+    </tr>
+    <tr>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td><Link to='/basetable'>ShowReports</Link></td>
+      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
+    </tr>
+              <tr>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td><Link to='/basetable'>ShowReports</Link></td>
+      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
+    </tr>
+    <tr>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td><Link to='/basetable'>ShowReports</Link></td>
+      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
+    </tr>
+    <tr>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td><Link to='/basetable'>ShowReports</Link></td>
+      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
+    </tr>
+   <tr>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td><Link to='/basetable'>ShowReports</Link></td>
+      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
+    </tr>
+     <tr>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td><Link to='/basetable'>ShowReports</Link></td>
+      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
+    </tr>
+      <tr>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td><Link to='/basetable'>ShowReports</Link></td>
+      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
+    </tr>
+   <tr>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td><Link to='/basetable'>ShowReports</Link></td>
+      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
+    </tr>
+   <tr>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td><Link to='/basetable'>ShowReports</Link></td>
+      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
+    </tr>
+     <tr>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td><Link to='/basetable'>ShowReports</Link></td>
+      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
+    </tr>
+      <tr>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td><Link to='/basetable'>ShowReports</Link></td>
+      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
+    </tr>
+    <tr>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td><Link to='/basetable'>ShowReports</Link></td>
+      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
+    </tr>
+      <tr>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td><Link to='/basetable'>ShowReports</Link></td>
+      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
+    </tr>
+
+  </tbody>
+        </Table>
+        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+        <Button style={{margin:3}}>Select Report</Button>
+        <Button style={{margin:3}} onClick={clickHandler}>Main Menu</Button>
+        </div>
+        
         </div>
     )
 }

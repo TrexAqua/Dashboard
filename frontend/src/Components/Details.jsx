@@ -11,13 +11,13 @@ const Details = ({history}) => {
     return (
         <div>
             <header>
-                <h4>Details</h4>
+                <h4>Main Menu</h4>
             </header>
-            <div className='link-container'>
+            <div style={{display: 'flex', justifyContent: 'space-evenly'}} className='link-container'>
                 <Link className='link' to='/dashboard'>AUTOMATION DASHBOARD</Link>
-                <Link className='link' to='/dashboard'>SMOKE TEST</Link>
-                <Link className='link' to='/dashboard'>MANUAL TEST</Link>
-                <Link className='link' to='/dashboard'>REPORTS</Link>
+                <Link className='link' to='/catalog'>SMOKE TEST</Link>
+                <Link className='link' to='/catalog'>MANUAL TEST</Link>
+                <Link className='link' to='/catalog'>REPORTS</Link>
             </div>
             <ul>
                 <li>Test Environment</li>
