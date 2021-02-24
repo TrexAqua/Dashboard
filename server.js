@@ -11,6 +11,11 @@ import {
   getAppNameByDropdown,
   getBySystemAndAppName,
 } from "./Controllers/databaseControllers.js";
+
+import {
+  executeJob
+}from "./Controllers/JobExecutorController.js";
+
 //ENV variables
 dotenv.config();
 
@@ -46,6 +51,9 @@ app.get("/filtersystem/:name", filterBySystemName);
 app.get("/appname/:name", getAppNameByDropdown);
 //Get the rows with system name and app name
 app.get("/related/:systemname/:appname", getBySystemAndAppName);
+
+//Execute a Job 
+app.get("/executeJob", executeJob);
 
 app.listen(5000, () => {
   console.log(`Server running on Port 5000...`);

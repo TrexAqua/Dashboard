@@ -43,7 +43,7 @@ const getUniqueSystemName = async (req, res) => {
 };
 
 const getAppNameByDropdown = async (req, res) => {
-  const sql = "SELECT Applname FROM dashboard WHERE Systemnm=?";
+  const sql = "SELECT distinct Applname FROM dashboard WHERE Systemnm=?";
   const query = await db.query(sql, [req.params.name], (err, results) => {
     if (err) {
       throw err;

@@ -2,11 +2,23 @@ import React from 'react'
 import {Table , DropdownButton, Button} from 'react-bootstrap'
 import DropdownItem from 'react-bootstrap/esm/DropdownItem'
 import { Link } from 'react-router-dom'
+import '../Styles/Catalog.css'
 
 const Catalog = ({history}) => {
   const clickHandler = () => {
     history.push('/')
   }
+
+  const execute = ()=>{
+   
+    alert("Job execution triggered !")
+    const fun = async () => {
+      const response = await fetch(`/executeJob`).then(data => data.json());
+      alert(JSON.stringify(response));
+    }
+    fun();
+    
+ }
 
 
     return (
@@ -37,16 +49,7 @@ const Catalog = ({history}) => {
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td><Link to='/basetable'>ShowReports</Link></td>
-      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
-    </tr>
-    <tr>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
+      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
       <td>Adhoc</td>
       <td><Link to='/basetable'>ShowReports</Link></td>
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
@@ -55,7 +58,7 @@ const Catalog = ({history}) => {
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
-      <td>Adhoc</td>
+      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
       <td>Adhoc</td>
       <td><Link to='/basetable'>ShowReports</Link></td>
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
@@ -64,7 +67,16 @@ const Catalog = ({history}) => {
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
+      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
       <td>Adhoc</td>
+      <td><Link to='/basetable'>ShowReports</Link></td>
+      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
+    </tr>
+    <tr>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
       <td>Adhoc</td>
       <td><Link to='/basetable'>ShowReports</Link></td>
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
@@ -73,16 +85,7 @@ const Catalog = ({history}) => {
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td><Link to='/basetable'>ShowReports</Link></td>
-      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
-    </tr>
-    <tr>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
+      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
       <td>Adhoc</td>
       <td><Link to='/basetable'>ShowReports</Link></td>
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
@@ -91,7 +94,16 @@ const Catalog = ({history}) => {
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
+      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
       <td>Adhoc</td>
+      <td><Link to='/basetable'>ShowReports</Link></td>
+      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
+    </tr>
+    <tr>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
       <td>Adhoc</td>
       <td><Link to='/basetable'>ShowReports</Link></td>
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
@@ -100,7 +112,7 @@ const Catalog = ({history}) => {
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
-      <td>Adhoc</td>
+      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
       <td>Adhoc</td>
       <td><Link to='/basetable'>ShowReports</Link></td>
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
@@ -109,7 +121,7 @@ const Catalog = ({history}) => {
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
-      <td>Adhoc</td>
+      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
       <td>Adhoc</td>
       <td><Link to='/basetable'>ShowReports</Link></td>
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
@@ -118,16 +130,7 @@ const Catalog = ({history}) => {
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td><Link to='/basetable'>ShowReports</Link></td>
-      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
-    </tr>
-   <tr>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
+      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
       <td>Adhoc</td>
       <td><Link to='/basetable'>ShowReports</Link></td>
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
@@ -136,7 +139,16 @@ const Catalog = ({history}) => {
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
+      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
       <td>Adhoc</td>
+      <td><Link to='/basetable'>ShowReports</Link></td>
+      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
+    </tr>
+   <tr>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
       <td>Adhoc</td>
       <td><Link to='/basetable'>ShowReports</Link></td>
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
@@ -145,7 +157,7 @@ const Catalog = ({history}) => {
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
-      <td>Adhoc</td>
+      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
       <td>Adhoc</td>
       <td><Link to='/basetable'>ShowReports</Link></td>
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
@@ -154,7 +166,7 @@ const Catalog = ({history}) => {
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
-      <td>Adhoc</td>
+      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
       <td>Adhoc</td>
       <td><Link to='/basetable'>ShowReports</Link></td>
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
@@ -163,7 +175,7 @@ const Catalog = ({history}) => {
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
-      <td>Adhoc</td>
+      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
       <td>Adhoc</td>
       <td><Link to='/basetable'>ShowReports</Link></td>
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
@@ -172,7 +184,7 @@ const Catalog = ({history}) => {
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
-      <td>Adhoc</td>
+      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
       <td>Adhoc</td>
       <td><Link to='/basetable'>ShowReports</Link></td>
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
