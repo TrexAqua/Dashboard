@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { Button, Table, Dropdown, DropdownButton} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+
 const BaseTable = ({ history }) => {
     const [data, setData] = useState([])
     const [status, setStatus] = useState('')
@@ -71,8 +72,12 @@ const BaseTable = ({ history }) => {
                 <td>{x.totaltestcase}</td>
                 <td>{x.totalpassed}</td>
                 <td>{x.totalfailed}</td>
-            <td><Link to={{pathname: '/base', reporttitle: x.reporttitle}} reporttitle={x.reporttitle} >Show Report</Link></td>
-                    </tr>
+            <td><Link to={{pathname: '/base', reporttitle: x.reporttitle}} reporttitle={x.reporttitle} >
+                <Button class="showReportButton" renderAs="button" variant="outline-success" style={{ "border-radius": "8px" }}>
+                    <span>Show Report</span>
+                </Button>
+            </Link></td>
+            </tr>
     ))}   
       
                 
