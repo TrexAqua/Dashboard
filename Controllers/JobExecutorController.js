@@ -2,8 +2,7 @@ import exec from "child_process";
 import resolve from "path";
 
 const executeJob = async (req, res) => {
-
-  const full_path = resolve.resolve("../Prototype/jobs/SampleJobExecutor.bat");
+  const full_path = resolve.resolve("../Dashboard/jobs/SampleJobExecutor.bat");
   console.log(full_path);
   exec.exec(full_path, (error, stdout, stderr) => {
     if (error) {

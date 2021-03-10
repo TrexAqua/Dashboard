@@ -65,7 +65,6 @@ app.get("/appname/:name", getAppNameByDropdown);
 //Get the rows with system name and app name
 app.get("/related/:systemname/:appname", getBySystemAndAppName);
 
-//Execute a Job
 app.get("/executeJob", executeJob);
 
 app.listen(5000, () => {
