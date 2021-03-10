@@ -43,7 +43,7 @@ const getUniqueSystemName = async (req, res) => {
 };
 
 const getAppNameByDropdown = async (req, res) => {
-  const sql = "SELECT Applname FROM dashboard WHERE Systemnm=?";
+  const sql = "SELECT distinct Applname FROM dashboard WHERE Systemnm=?";
   const query = await db.query(sql, [req.params.name], (err, results) => {
     if (err) {
       throw err;
@@ -120,6 +120,79 @@ const getDetailsReport = async (req, res) => {
   });
 };
 
+const getJobReports = async (req, res) => {
+  const sql = "SELECT * FROM jobreports";
+  const query = await db.query(sql, (err, results) => {
+    if (err) {
+      throw err;
+    }
+    console.log(results);
+    res.json({
+      message: "Data Fetched",
+      data: results,
+    });
+  });
+};
+const getAllJobDetails = async (req, res) => {
+  const sql = "SELECT * FROM reportdetail";
+  await db.query(sql, (err, results) => {
+    if (err) {
+      throw err;
+    }
+    console.log(results);
+    res.json({
+      message: "Data Fetched",
+      data: results,
+    });
+  });
+};
+
+const getJobDetails = async (req, res) => {
+  const sql = "SELECT * FROM reportdetail where Reportnm=?";
+  await db.query(sql, [req.params.title], (err, results) => {
+    if (err) {
+      throw err;
+    }
+    console.log(results);
+    res.json({
+      message: "Data Fetched",
+      data: results,
+    });
+  });
+};
+
+const getJobDetailByStatus = async (req, res) => {
+  const sql = "SELECT * FROM reportdetail where JobStatus=?";
+  await db.query(sql, [req.params.status], (err, results) => {
+    if (err) {
+      throw err;
+    }
+    console.log(results);
+    res.json({
+      message: "Data Fetched",
+      data: results,
+    });
+  });
+};
+const getReportByStatus = async (req, res) => {
+  let status;
+  if (req.params.status === "pass") {
+    status = "totalfailed";
+  } else {
+    status = "totalpassed";
+  }
+  const sql = `SELECT * FROM jobreports where ${status} = 0`;
+  await db.query(sql, [req.params.status], (err, results) => {
+    if (err) {
+      throw err;
+    }
+    console.log(results);
+    res.json({
+      message: "Data Fetched",
+      data: results,
+    });
+  });
+};
 export {
   createDatabase,
   getDashboard,
@@ -129,4 +202,9 @@ export {
   filterBySystemName,
   getAppNameByDropdown,
   getBySystemAndAppName,
+  getJobReports,
+  getJobDetails,
+  getAllJobDetails,
+  getJobDetailByStatus,
+  getReportByStatus,
 };

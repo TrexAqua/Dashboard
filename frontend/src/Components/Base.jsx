@@ -1,28 +1,70 @@
-import React from 'react'
-import { Table, DropdownButton, Button } from 'react-bootstrap'
-import DropdownItem from 'react-bootstrap/esm/DropdownItem'
+import React, { useEffect, useState } from 'react'
+import { Table, DropdownButton,Dropdown, Button } from 'react-bootstrap'
 
 
-const Base = ({history}) => {
+const Base = ({ history, location }) => {
+    const [status, setStatus] = useState('')
+    const [data, setData] = useState([]);
+    const [title, setTitle] = useState('')
+  
+
     const clickHandler = () => {
         history.push('/')
+  }
+  const dropdownClickHandler = (e) => {
+    console.log(e)
+    setStatus(e)
+  }
+  
+  useEffect(() => {
+    if (location.reporttitle) {
+      setTitle(location.reporttitle)
     }
-
+    
+    const fetchData = async () => {
+      if (title !== '') {
+        const response = await fetch(`/reportdetail/${location.reporttitle}`).then(response => response.json())
+      setData(response.data)
+      } else {
+        const response = await fetch(`/reportdetail`).then(response => response.json())
+      setData(response.data)
+      }
+    }
+    fetchData()   
+  }, [location, title])
+  
+  useEffect(() => {
+    if (status !== '' && status !== 'All') {
+      const fetchData = async () => {
+        const { data } = await fetch(`/statusdetail/${status}`).then(data => data.json())
+        setData(data)
+        console.log(data)
+      }
+      fetchData()
+    }
+    if (status === 'All') {
+      const fetchData = async () => {
+        const { data } = await fetch(`/reportdetail`).then(data => data.json())
+        setData(data)
+        console.log(data)
+      }
+      fetchData()
+    }
+  },[status])
     return (
         <div>
     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <h1 >Simcord Automation Testing Tool - SAAT</h1>
                 <h3>Base Table - Simpcord Test Automation</h3>
                 Choose P/F<DropdownButton title='Reports on the Page:'>
-                    <DropdownItem>Adhoc</DropdownItem>
-                    <DropdownItem>Adhoc</DropdownItem>
-                    <DropdownItem>Adhoc</DropdownItem>
-                    <DropdownItem>Adhoc</DropdownItem>
+                    <Dropdown.Item eventKey='Pass' onSelect={dropdownClickHandler}>Passed</Dropdown.Item>
+                    <Dropdown.Item eventKey='Fail'onSelect={dropdownClickHandler}>Fail</Dropdown.Item>
+                    <Dropdown.Item eventKey='All'onSelect={dropdownClickHandler}>All</Dropdown.Item>
                 </DropdownButton>
         </div>
             <div>
             <Button onClick={clickHandler}>MainMenu</Button>
-            <Button>Previous</Button>
+          <Button onClick={()=>{history.push('/basetable')}}>Previous</Button>
             </div>    
     <Table striped bordered hover size="sm">
   <thead>
@@ -35,74 +77,18 @@ const Base = ({history}) => {
       <th>Passed/Failed</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <td>{Math.floor(Math.random() * 10)}</td>
-      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, aperiam?</td>
-      <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet alias eaque soluta optio animi doloribus? Necessitatibus minus aliquam facere mollitia consectetur eligendi voluptatum tenetur architecto, dolorum, veniam repudiandae temporibus cumque? Illum doloribus dolore sed ut iste fugiat culpa, animi beatae alias fugit eligendi odio voluptatem, minus magni illo ex sunt.</td>
-      <td>Lorem ipsum dolor sit amet consectetur adipisicing.</td>
-      <td>Adhoc</td>
-      <td>Lorem, ipsum dolor.</td>
-    </tr>
-    <tr>
-      <td>{Math.floor(Math.random() * 10)}</td>
-      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, aperiam?</td>
-      <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet alias eaque soluta optio animi doloribus? Necessitatibus minus aliquam facere mollitia consectetur eligendi voluptatum tenetur architecto, dolorum, veniam repudiandae temporibus cumque? Illum doloribus dolore sed ut iste fugiat culpa, animi beatae alias fugit eligendi odio voluptatem, minus magni illo ex sunt.</td>
-      <td>Lorem ipsum dolor sit amet consectetur adipisicing.</td>
-      <td>Adhoc</td>
-      <td>Lorem, ipsum dolor.</td>
-                    </tr>
-                        <tr>
-      <td>{Math.floor(Math.random() * 10)}</td>
-      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, aperiam?</td>
-      <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet alias eaque soluta optio animi doloribus? Necessitatibus minus aliquam facere mollitia consectetur eligendi voluptatum tenetur architecto, dolorum, veniam repudiandae temporibus cumque? Illum doloribus dolore sed ut iste fugiat culpa, animi beatae alias fugit eligendi odio voluptatem, minus magni illo ex sunt.</td>
-      <td>Lorem ipsum dolor sit amet consectetur adipisicing.</td>
-      <td>Adhoc</td>
-      <td>Lorem, ipsum dolor.</td>
-                    </tr>
-                        <tr>
-      <td>{Math.floor(Math.random() * 10)}</td>
-      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, aperiam?</td>
-      <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet alias eaque soluta optio animi doloribus? Necessitatibus minus aliquam facere mollitia consectetur eligendi voluptatum tenetur architecto, dolorum, veniam repudiandae temporibus cumque? Illum doloribus dolore sed ut iste fugiat culpa, animi beatae alias fugit eligendi odio voluptatem, minus magni illo ex sunt.</td>
-      <td>Lorem ipsum dolor sit amet consectetur adipisicing.</td>
-      <td>Adhoc</td>
-      <td>Lorem, ipsum dolor.</td>
-                    </tr>
-                        <tr>
-      <td>{Math.floor(Math.random() * 10)}</td>
-      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, aperiam?</td>
-      <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet alias eaque soluta optio animi doloribus? Necessitatibus minus aliquam facere mollitia consectetur eligendi voluptatum tenetur architecto, dolorum, veniam repudiandae temporibus cumque? Illum doloribus dolore sed ut iste fugiat culpa, animi beatae alias fugit eligendi odio voluptatem, minus magni illo ex sunt.</td>
-      <td>Lorem ipsum dolor sit amet consectetur adipisicing.</td>
-      <td>Adhoc</td>
-      <td>Lorem, ipsum dolor.</td>
-                    </tr>
-                        <tr>
-      <td>{Math.floor(Math.random() * 10)}</td>
-      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, aperiam?</td>
-      <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet alias eaque soluta optio animi doloribus? Necessitatibus minus aliquam facere mollitia consectetur eligendi voluptatum tenetur architecto, dolorum, veniam repudiandae temporibus cumque? Illum doloribus dolore sed ut iste fugiat culpa, animi beatae alias fugit eligendi odio voluptatem, minus magni illo ex sunt.</td>
-      <td>Lorem ipsum dolor sit amet consectetur adipisicing.</td>
-      <td>Adhoc</td>
-      <td>Lorem, ipsum dolor.</td>
-                    </tr>
-                        <tr>
-      <td>{Math.floor(Math.random() * 10)}</td>
-      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, aperiam?</td>
-      <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet alias eaque soluta optio animi doloribus? Necessitatibus minus aliquam facere mollitia consectetur eligendi voluptatum tenetur architecto, dolorum, veniam repudiandae temporibus cumque? Illum doloribus dolore sed ut iste fugiat culpa, animi beatae alias fugit eligendi odio voluptatem, minus magni illo ex sunt.</td>
-      <td>Lorem ipsum dolor sit amet consectetur adipisicing.</td>
-      <td>Adhoc</td>
-      <td>Lorem, ipsum dolor.</td>
-                    </tr>
-                        <tr>
-      <td>{Math.floor(Math.random() * 10)}</td>
-      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, aperiam?</td>
-      <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet alias eaque soluta optio animi doloribus? Necessitatibus minus aliquam facere mollitia consectetur eligendi voluptatum tenetur architecto, dolorum, veniam repudiandae temporibus cumque? Illum doloribus dolore sed ut iste fugiat culpa, animi beatae alias fugit eligendi odio voluptatem, minus magni illo ex sunt.</td>
-      <td>Lorem ipsum dolor sit amet consectetur adipisicing.</td>
-      <td>Adhoc</td>
-      <td>Lorem, ipsum dolor.</td>
-    </tr>
-                    
-    
-
+          <tbody>
+            {data.map(x => (
+<tr>
+      <td>{x.Scno}</td>
+      <td>{x.Scdec}</td>
+      <td>{x.input}</td>
+      <td>{x.ExpectedResult}</td>
+      <td>{x.ActualResult}</td>
+      <td>{x.JobStatus}</td>
+    </tr>     
+            ))}
+                
   </tbody>
 </Table>
         </div>

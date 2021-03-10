@@ -125,7 +125,7 @@ const Dashboard = () => {
                             <td>{x.Tottestcase}</td>
                             <td>{x.Totalpass}</td>
                             <td>{x.TotFail}</td>
-                            <td>{x.Systemnm}</td>
+                            <td>{x.PctPass}</td>
                         </tr>
                     ))}
                 </tbody>
