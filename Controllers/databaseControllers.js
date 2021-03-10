@@ -134,7 +134,7 @@ const getJobReports = async (req, res) => {
   });
 };
 const getAllJobDetails = async (req, res) => {
-  const sql = "SELECT * FROM reportdetail";
+  const sql = "SELECT * FROM detailreport";
   await db.query(sql, (err, results) => {
     if (err) {
       throw err;
@@ -148,7 +148,7 @@ const getAllJobDetails = async (req, res) => {
 };
 
 const getJobDetails = async (req, res) => {
-  const sql = "SELECT * FROM reportdetail where Reportnm=?";
+  const sql = "SELECT * FROM detailreport where Reportnm=?";
   await db.query(sql, [req.params.title], (err, results) => {
     if (err) {
       throw err;
@@ -162,7 +162,7 @@ const getJobDetails = async (req, res) => {
 };
 
 const getJobDetailByStatus = async (req, res) => {
-  const sql = "SELECT * FROM reportdetail where JobStatus=?";
+  const sql = "SELECT * FROM detailreport where Status=?";
   await db.query(sql, [req.params.status], (err, results) => {
     if (err) {
       throw err;
@@ -175,13 +175,13 @@ const getJobDetailByStatus = async (req, res) => {
   });
 };
 const getReportByStatus = async (req, res) => {
-  let status;
+  let condition;
   if (req.params.status === "pass") {
-    status = "totalfailed";
-  } else {
-    status = "totalpassed";
+    condition = "totalfailed = 0";
+  } else if (req.params.status === "fail") {
+    condition = "totalfailed > 0 ";
   }
-  const sql = `SELECT * FROM jobreports where ${status} = 0`;
+  const sql = `SELECT * FROM jobreports where ${condition}`;
   await db.query(sql, [req.params.status], (err, results) => {
     if (err) {
       throw err;

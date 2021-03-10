@@ -81,11 +81,11 @@ const Base = ({ history, location }) => {
             {data.map(x => (
 <tr>
       <td>{x.Scno}</td>
-      <td>{x.Scdec}</td>
+      <td>{x.Scdesc}</td>
       <td>{x.input}</td>
       <td>{x.ExpectedResult}</td>
       <td>{x.ActualResult}</td>
-      <td>{x.JobStatus}</td>
+      <td>{x.Status}</td>
     </tr>     
             ))}
                 
