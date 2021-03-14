@@ -4,21 +4,20 @@ import DropdownItem from 'react-bootstrap/esm/DropdownItem'
 import { Link } from 'react-router-dom'
 import '../Styles/Catalog.css'
 
-const Catalog = ({history}) => {
+const Catalog = ({ history }) => {
+  
   const clickHandler = () => {
     history.push('/')
   }
 
   const execute = ()=>{
-   
     alert("Job execution triggered !")
     const fun = async () => {
       const response = await fetch(`/executeJob`).then(data => data.json());
       alert(JSON.stringify(response));
     }
     fun();
-    
- }
+  }
 
 
     return (
@@ -32,7 +31,7 @@ const Catalog = ({history}) => {
                   <DropdownItem>Adhoc</DropdownItem>
                 </DropdownButton>
     </div>
-    <Table striped bordered hover size="sm">
+    <Table id='example' striped bordered hover size="sm">
   <thead>
     <tr>
       <th>ReportCatalog</th>
@@ -45,7 +44,7 @@ const Catalog = ({history}) => {
     </tr>
   </thead>
   <tbody>
-    <tr>
+            <tr>
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>

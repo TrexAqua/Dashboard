@@ -134,7 +134,7 @@ const getJobReports = async (req, res) => {
   });
 };
 const getAllJobDetails = async (req, res) => {
-  const sql = "SELECT * FROM detailreport";
+  const sql = "SELECT * FROM reportdetail";
   await db.query(sql, (err, results) => {
     if (err) {
       throw err;
@@ -148,7 +148,7 @@ const getAllJobDetails = async (req, res) => {
 };
 
 const getJobDetails = async (req, res) => {
-  const sql = "SELECT * FROM detailreport where Reportnm=?";
+  const sql = "SELECT * FROM reportdetail where Reportnm=?";
   await db.query(sql, [req.params.title], (err, results) => {
     if (err) {
       throw err;
@@ -162,7 +162,7 @@ const getJobDetails = async (req, res) => {
 };
 
 const getJobDetailByStatus = async (req, res) => {
-  const sql = "SELECT * FROM detailreport where Status=?";
+  const sql = "SELECT * FROM reportdetail where JobStatus=?";
   await db.query(sql, [req.params.status], (err, results) => {
     if (err) {
       throw err;
@@ -193,6 +193,35 @@ const getReportByStatus = async (req, res) => {
     });
   });
 };
+
+const getJobNames = async (req, res) => {
+  const sql = "SELECT DISTINCT Jobnm from detailreport";
+  await db.query(sql, (err, results) => {
+    if (err) {
+      throw err;
+    }
+    console.log(results);
+    res.json({
+      message: "Data Fetched",
+      data: results,
+    });
+  });
+};
+const getReportByJobName = async (req, res) => {
+  const sql =
+    "select * from jobreports where reporttitle in(select distinct Reportnm from detailreport where Jobnm=?);";
+  await db.query(sql, [req.params.job], (err, results) => {
+    if (err) {
+      throw err;
+    }
+    console.log(results);
+    res.json({
+      message: "Data Fetched",
+      data: results,
+    });
+  });
+};
+
 export {
   createDatabase,
   getDashboard,
@@ -207,4 +236,6 @@ export {
   getAllJobDetails,
   getJobDetailByStatus,
   getReportByStatus,
+  getJobNames,
+  getReportByJobName,
 };

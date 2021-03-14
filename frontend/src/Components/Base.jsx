@@ -6,7 +6,7 @@ const Base = ({ history, location }) => {
     const [status, setStatus] = useState('')
     const [data, setData] = useState([]);
     const [title, setTitle] = useState('')
-  
+    const [jobNames, setJobNames] = useState([])
 
     const clickHandler = () => {
         history.push('/')
@@ -15,6 +15,14 @@ const Base = ({ history, location }) => {
     console.log(e)
     setStatus(e)
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await fetch('/jobs').then(data => data.json())
+      setJobNames(data)
+    }
+    fetchData()
+  },[])
   
   useEffect(() => {
     if (location.reporttitle) {
@@ -24,10 +32,10 @@ const Base = ({ history, location }) => {
     const fetchData = async () => {
       if (title !== '') {
         const response = await fetch(`/reportdetail/${location.reporttitle}`).then(response => response.json())
-      setData(response.data)
+        setData(response.data)
       } else {
         const response = await fetch(`/reportdetail`).then(response => response.json())
-      setData(response.data)
+        setData(response.data)
       }
     }
     fetchData()   
@@ -38,7 +46,6 @@ const Base = ({ history, location }) => {
       const fetchData = async () => {
         const { data } = await fetch(`/statusdetail/${status}`).then(data => data.json())
         setData(data)
-        console.log(data)
       }
       fetchData()
     }
@@ -46,7 +53,6 @@ const Base = ({ history, location }) => {
       const fetchData = async () => {
         const { data } = await fetch(`/reportdetail`).then(data => data.json())
         setData(data)
-        console.log(data)
       }
       fetchData()
     }
@@ -56,7 +62,9 @@ const Base = ({ history, location }) => {
     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <h1 >Simcord Automation Testing Tool - SAAT</h1>
                 <h3>Base Table - Simpcord Test Automation</h3>
-                Choose P/F<DropdownButton title='Reports on the Page:'>
+                Choose P/F
+            
+                <DropdownButton title='Select Job Name'>
                     <Dropdown.Item eventKey='Pass' onSelect={dropdownClickHandler}>Passed</Dropdown.Item>
                     <Dropdown.Item eventKey='Fail'onSelect={dropdownClickHandler}>Fail</Dropdown.Item>
                     <Dropdown.Item eventKey='All'onSelect={dropdownClickHandler}>All</Dropdown.Item>
@@ -79,7 +87,7 @@ const Base = ({ history, location }) => {
   </thead>
           <tbody>
             {data.map(x => (
-<tr>
+<tr key={Math.random()}>
       <td>{x.Scno}</td>
       <td>{x.Scdesc}</td>
       <td>{x.input}</td>

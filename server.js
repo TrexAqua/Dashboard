@@ -15,6 +15,8 @@ import {
   getAllJobDetails,
   getJobDetailByStatus,
   getReportByStatus,
+  getJobNames,
+  getReportByJobName,
 } from "./Controllers/databaseControllers.js";
 
 import { executeJob } from "./Controllers/JobExecutorController.js";
@@ -52,6 +54,10 @@ app.get("/system", getUniqueSystemName);
 app.get("/reportdetail", getAllJobDetails);
 //Get the results of jobs after execution
 app.get("/basetable", getJobReports);
+//Get all Job Names
+app.get("/jobs", getJobNames);
+//get job report with job name
+app.get("/jobs/:job", getReportByJobName);
 //Get Reports with 0 pass or 0 fail
 app.get("/basetable/:status", getReportByStatus);
 //get details of a specific job
