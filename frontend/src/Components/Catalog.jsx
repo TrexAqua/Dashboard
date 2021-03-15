@@ -1,14 +1,42 @@
-import React from 'react'
+/* eslint-disable jsx-a11y/no-access-key */
+import React, { useState } from 'react'
 import {Table , DropdownButton, Button} from 'react-bootstrap'
 import DropdownItem from 'react-bootstrap/esm/DropdownItem'
 import { Link } from 'react-router-dom'
 import '../Styles/Catalog.css'
 
 const Catalog = ({ history }) => {
-  
+
+  const [featureFiles, setFeatureFiles] = useState([]);
+
   const clickHandler = () => {
+
     history.push('/')
   }
+  const exectionHandler = () => {
+    let collection = document.getElementsByClassName('example')
+    // let rows = table.getElementsByTagName('tr')
+    let table = collection[0]
+    var rows = table.getElementsByTagName('tr')
+    let arr = []
+
+    for (let i = 0; i < rows.length; i++) {
+      const row = rows[i];
+      const trs = row.getElementsByTagName('td')
+      let tds = trs[0]
+      arr.push(tds)
+    }
+    arr.shift()
+    for (let i = 0; i < arr.length; i++) {
+      const td = arr[i];
+      const input = td.getElementsByTagName('input')
+      if (input[0].checked === true) {
+        featureFiles.push(input[0].accessKey)
+      }
+    }
+    console.log(featureFiles)
+}
+  
 
   const execute = ()=>{
     alert("Job execution triggered !")
@@ -31,9 +59,10 @@ const Catalog = ({ history }) => {
                   <DropdownItem>Adhoc</DropdownItem>
                 </DropdownButton>
     </div>
-    <Table id='example' striped bordered hover size="sm">
+    <Table className='example' striped bordered hover size="sm">
   <thead>
-    <tr>
+       <tr>
+      <th></th>
       <th>ReportCatalog</th>
       <th>Description</th>
       <th>Featurefile</th>
@@ -44,7 +73,8 @@ const Catalog = ({ history }) => {
     </tr>
   </thead>
   <tbody>
-            <tr>
+    <tr>
+      <td><input accessKey='hello world' type="checkbox"/></td>
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
@@ -54,6 +84,7 @@ const Catalog = ({ history }) => {
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
     </tr>
     <tr>
+      <td><input accessKey='hello world' type="checkbox"/></td>
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
@@ -63,6 +94,7 @@ const Catalog = ({ history }) => {
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
     </tr>
     <tr>
+      <td><input accessKey='hello world' type="checkbox"/></td>
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
@@ -72,6 +104,7 @@ const Catalog = ({ history }) => {
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
     </tr>
     <tr>
+      <td><input accessKey='hello world' type="checkbox"/></td>
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
@@ -80,16 +113,8 @@ const Catalog = ({ history }) => {
       <td><Link to='/basetable'>ShowReports</Link></td>
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
     </tr>
-              <tr>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
-      <td>Adhoc</td>
-      <td><Link to='/basetable'>ShowReports</Link></td>
-      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
-    </tr>
-    <tr>
+      <tr>
+      <td><input accessKey='hello world' type="checkbox"/></td>
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
@@ -99,6 +124,17 @@ const Catalog = ({ history }) => {
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
     </tr>
     <tr>
+      <td><input accessKey='hello world' type="checkbox"/></td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td>Adhoc</td>
+      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
+      <td>Adhoc</td>
+      <td><Link to='/basetable'>ShowReports</Link></td>
+      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
+    </tr>
+    <tr>
+      <td><input accessKey='hello world' type="checkbox"/></td>
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
@@ -108,6 +144,7 @@ const Catalog = ({ history }) => {
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
     </tr>
    <tr>
+      <td><input accessKey='hello world' type="checkbox"/></td>
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
@@ -117,6 +154,7 @@ const Catalog = ({ history }) => {
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
     </tr>
      <tr>
+      <td><input accessKey='hello world' type="checkbox"/></td>
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
@@ -126,6 +164,7 @@ const Catalog = ({ history }) => {
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
     </tr>
       <tr>
+      <td><input accessKey='hello world' type="checkbox"/></td>
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
@@ -135,6 +174,7 @@ const Catalog = ({ history }) => {
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
     </tr>
    <tr>
+      <td><input accessKey='hello world' type="checkbox"/></td>
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
@@ -144,6 +184,7 @@ const Catalog = ({ history }) => {
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
     </tr>
    <tr>
+      <td><input accessKey='hello world' type="checkbox"/></td>
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
@@ -153,6 +194,7 @@ const Catalog = ({ history }) => {
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
     </tr>
      <tr>
+      <td><input accessKey='hello world' type="checkbox"/></td>
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
@@ -161,7 +203,8 @@ const Catalog = ({ history }) => {
       <td><Link to='/basetable'>ShowReports</Link></td>
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
     </tr>
-      <tr>
+     <tr>
+      <td><input accessKey='hello world' type="checkbox"/></td>
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
@@ -171,6 +214,7 @@ const Catalog = ({ history }) => {
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
     </tr>
     <tr>
+      <td><input accessKey='hello world' type="checkbox"/></td>
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
@@ -179,7 +223,8 @@ const Catalog = ({ history }) => {
       <td><Link to='/basetable'>ShowReports</Link></td>
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
     </tr>
-      <tr>
+    <tr>
+      <td><input accessKey='hello world' type="checkbox"/></td>
       <td>Adhoc</td>
       <td>Adhoc</td>
       <td>Adhoc</td>
@@ -188,10 +233,10 @@ const Catalog = ({ history }) => {
       <td><Link to='/basetable'>ShowReports</Link></td>
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
     </tr>
-
   </tbody>
         </Table>
-        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Button onClick={exectionHandler} style={{margin:3}}>Execute Job</Button>
         <Button style={{margin:3}}>Select Report</Button>
         <Button style={{margin:3}} onClick={clickHandler}>Main Menu</Button>
         </div>

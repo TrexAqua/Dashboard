@@ -134,7 +134,7 @@ const getJobReports = async (req, res) => {
   });
 };
 const getAllJobDetails = async (req, res) => {
-  const sql = "SELECT * FROM reportdetail";
+  const sql = "SELECT * FROM detailreport";
   await db.query(sql, (err, results) => {
     if (err) {
       throw err;
@@ -148,21 +148,20 @@ const getAllJobDetails = async (req, res) => {
 };
 
 const getJobDetails = async (req, res) => {
-  const sql = "SELECT * FROM reportdetail where Reportnm=?";
+  const sql = "SELECT * FROM detailreport where Reportnm=?";
   await db.query(sql, [req.params.title], (err, results) => {
     if (err) {
       throw err;
     }
-    console.log(results);
     res.json({
-      message: "Data Fetched",
+      message: "Data Fetched Yay",
       data: results,
     });
   });
 };
 
 const getJobDetailByStatus = async (req, res) => {
-  const sql = "SELECT * FROM reportdetail where JobStatus=?";
+  const sql = "SELECT * FROM detailreport where JobStatus=?";
   await db.query(sql, [req.params.status], (err, results) => {
     if (err) {
       throw err;
