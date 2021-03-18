@@ -93,7 +93,7 @@ const getBySystemAndAppName = async (req, res) => {
 };
 
 const getJobCatalog = async (req, res) => {
-  const sql = "SELECT * FROM JobCatalog";
+  const sql = "SELECT * FROM JobCatalog order by Jobnm";
   const query = await db.query(sql, (err, results) => {
     if (err) {
       throw err;
@@ -198,7 +198,7 @@ const getReportByStatus = async (req, res) => {
 };
 
 const getJobNames = async (req, res) => {
-  const sql = "SELECT DISTINCT Jobnm from detailreport";
+  const sql = "SELECT DISTINCT Jobnm from detailreport order by Jobnm asc";
   await db.query(sql, (err, results) => {
     if (err) {
       throw err;
