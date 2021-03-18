@@ -14,8 +14,7 @@ const Catalog = ({ history }) => {
     history.push('/')
   }
   const exectionHandler = () => {
-    let collection = document.getElementsByClassName('example')
-    // let rows = table.getElementsByTagName('tr')
+    let collection = document.getElementsByClassName('jobcatalogTable')
     let table = collection[0]
     var rows = table.getElementsByTagName('tr')
     let arr = []
@@ -59,7 +58,7 @@ const Catalog = ({ history }) => {
                   <DropdownItem>Adhoc</DropdownItem>
                 </DropdownButton>
     </div>
-    <Table className='example' striped bordered hover size="sm">
+    <Table className='jobcatalogTable' striped bordered hover size="sm">
   <thead>
        <tr>
       <th></th>

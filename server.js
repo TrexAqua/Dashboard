@@ -1,4 +1,5 @@
 import express from "express";
+import bodyParser from "body-parser"
 import db from "./Config/db.js";
 import dotenv from "dotenv";
 import {
@@ -19,12 +20,15 @@ import {
   getReportByJobName,
 } from "./Controllers/databaseControllers.js";
 
-import { executeJob } from "./Controllers/JobExecutorController.js";
+import { executeJob, executeJobs } from "./Controllers/JobExecutorController.js";
 
 //ENV variables
 dotenv.config();
 
 const app = express();
+
+// body parser for post requests
+app.use(bodyParser.json());
 
 //connect the database
 
@@ -70,6 +74,7 @@ app.get("/statusdetail/:reportname/:status", getJobDetailByStatus);
 app.get("/related/:systemname/:appname", getBySystemAndAppName);
 
 app.get("/executeJob", executeJob);
+app.post("/executeJobs", executeJobs)
 
 app.listen(5000, () => {
   console.log(`Server running on Port 5000...`);
