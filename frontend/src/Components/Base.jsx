@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { Table, DropdownButton,Dropdown, Button } from 'react-bootstrap'
 
 
-const Base = ({ history, location }) => {
+const Base = ({ history, location, match }) => {
     const [status, setStatus] = useState('')
     const [data, setData] = useState([]);
     const [title, setTitle] = useState('')
-    const [jobNames, setJobNames] = useState([])
 
     const clickHandler = () => {
         history.push('/')
@@ -15,14 +14,6 @@ const Base = ({ history, location }) => {
     console.log(e)
     setStatus(e)
   }
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await fetch('/jobs').then(data => data.json())
-      setJobNames(data)
-    }
-    fetchData()
-  },[])
   
   useEffect(() => {
     if (location.reporttitle) {
@@ -30,33 +21,28 @@ const Base = ({ history, location }) => {
     }
     
     const fetchData = async () => {
-      if (title !== '') {
-        const response = await fetch(`/reportdetail/${location.reporttitle}`).then(response => response.json())
-        setData(response.data)
-      } else {
-        const response = await fetch(`/reportdetail`).then(response => response.json())
-        setData(response.data)
-      }
+      const response = await fetch(`/reportdetail/${match.params.reportname}`).then(response => response.json())
+      setData(response.data)
     }
     fetchData()   
-  }, [location, title])
+  }, [match,location, title])
   
   useEffect(() => {
     if (status !== '' && status !== 'All') {
       const fetchData = async () => {
-        const { data } = await fetch(`/statusdetail/${status}`).then(data => data.json())
+        const { data } = await fetch(`/statusdetail/${match.params.reportname}/${status}`).then(data => data.json())
         setData(data)
       }
       fetchData()
     }
     if (status === 'All') {
       const fetchData = async () => {
-        const { data } = await fetch(`/reportdetail`).then(data => data.json())
+        const { data } = await fetch(`/reportdetail/${match.params.reportname}`).then(data => data.json())
         setData(data)
       }
       fetchData()
     }
-  },[status])
+  },[status, match])
     return (
         <div>
     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>

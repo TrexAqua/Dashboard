@@ -161,17 +161,21 @@ const getJobDetails = async (req, res) => {
 };
 
 const getJobDetailByStatus = async (req, res) => {
-  const sql = "SELECT * FROM detailreport where JobStatus=?";
-  await db.query(sql, [req.params.status], (err, results) => {
-    if (err) {
-      throw err;
+  const sql = "SELECT * FROM detailreport where Reportnm=? and JobStatus=?";
+  await db.query(
+    sql,
+    [req.params.reportname, req.params.status],
+    (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      res.json({
+        message: "Data Fetched",
+        data: results,
+      });
     }
-    console.log(results);
-    res.json({
-      message: "Data Fetched",
-      data: results,
-    });
-  });
+  );
 };
 const getReportByStatus = async (req, res) => {
   let condition;

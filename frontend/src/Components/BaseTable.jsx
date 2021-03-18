@@ -74,7 +74,7 @@ const BaseTable = ({ history }) => {
                 <td>{x.totalpassed}</td>
                 <td>{x.totalfailed}</td>
                 <td>{x.Pctpassed}</td>
-            <td><Link to={{pathname: '/base', reporttitle: x.reporttitle}} reporttitle={x.reporttitle} >
+            <td><Link to={{pathname: `/base/${x.reporttitle}`, reporttitle: x.reporttitle}} reporttitle={x.reporttitle} >
                 <Button className="showReportButton"  variant="outline-success" style={{ borderRadius: 8 }}>
                     <span>Show Report</span>
                 </Button>

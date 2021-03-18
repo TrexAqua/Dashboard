@@ -18,9 +18,9 @@ const App = () => {
       <Route path="/catalog" component={Catalog} />
       <Route path="/details" component={Details} />
       <Route path="/development" component={Development} />
-      <Route path="/base" component={Base} />
       <Route path="/scheduler" component={Scheduler} />
       <Route path="/basetable" component={BaseTable} />
+      <Route path="/base/:reportname" component={Base} />
     </Router>
   );
 };

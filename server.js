@@ -50,8 +50,6 @@ app.get("/catalog", getJobCatalog);
 app.get("/report", getDetailsReport);
 //Get Unique System Names
 app.get("/system", getUniqueSystemName);
-//get details of all jobs
-app.get("/reportdetail", getAllJobDetails);
 //Get the results of jobs after execution
 app.get("/basetable", getJobReports);
 //Get all Job Names
@@ -62,12 +60,12 @@ app.get("/jobs/:job", getReportByJobName);
 app.get("/basetable/:status", getReportByStatus);
 //get details of a specific job
 app.get("/reportdetail/:title", getJobDetails);
-//get job details by status
-app.get("/statusdetail/:status", getJobDetailByStatus);
 //Filter by system name
 app.get("/filtersystem/:name", filterBySystemName);
 //Get App name by selected System Name
 app.get("/appname/:name", getAppNameByDropdown);
+//get job details by status
+app.get("/statusdetail/:reportname/:status", getJobDetailByStatus);
 //Get the rows with system name and app name
 app.get("/related/:systemname/:appname", getBySystemAndAppName);
 
