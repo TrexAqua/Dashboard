@@ -1,0 +1,8 @@
+tr.Pass td{
+    color: Green;
+    font-weight: bold;
+}
+
+tr.Fail td{
+    color: Red;
+}

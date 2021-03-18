@@ -161,7 +161,7 @@ const getJobDetails = async (req, res) => {
 };
 
 const getJobDetailByStatus = async (req, res) => {
-  const sql = "SELECT * FROM detailreport where Reportnm=? and JobStatus=?";
+  const sql = "SELECT * FROM detailreport where Reportnm=? and Status=?";
   await db.query(
     sql,
     [req.params.reportname, req.params.status],

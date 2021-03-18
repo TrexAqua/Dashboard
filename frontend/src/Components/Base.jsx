@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Table, DropdownButton,Dropdown, Button } from 'react-bootstrap'
-
+import '../Styles/Base.css'
 
 const Base = ({ history, location, match }) => {
     const [status, setStatus] = useState('')
@@ -47,11 +47,11 @@ const Base = ({ history, location, match }) => {
         <div>
     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <h1 >Simcord Automation Testing Tool - SAAT</h1>
-                <h3>Base Table - Simpcord Test Automation</h3>
-                Choose P/F
+                <h3>Base Table - Simpcorp Test Automation</h3>
+                <p>Report - {match.params.reportname}</p>
             
-                <DropdownButton title='Select Job Name'>
-                    <Dropdown.Item eventKey='Pass' onSelect={dropdownClickHandler}>Passed</Dropdown.Item>
+                <DropdownButton title='Filter By Test Status'>
+                    <Dropdown.Item eventKey='Pass' onSelect={dropdownClickHandler}>Pass</Dropdown.Item>
                     <Dropdown.Item eventKey='Fail'onSelect={dropdownClickHandler}>Fail</Dropdown.Item>
                     <Dropdown.Item eventKey='All'onSelect={dropdownClickHandler}>All</Dropdown.Item>
                 </DropdownButton>
@@ -73,7 +73,7 @@ const Base = ({ history, location, match }) => {
   </thead>
           <tbody>
             {data.map(x => (
-<tr key={Math.random()}>
+<tr key={Math.random()} className={x.Status}>
       <td>{x.Scno}</td>
       <td>{x.Scdesc}</td>
       <td>{x.input}</td>
