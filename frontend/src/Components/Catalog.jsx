@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-access-key */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Table , DropdownButton, Button} from 'react-bootstrap'
 import DropdownItem from 'react-bootstrap/esm/DropdownItem'
 import { Link } from 'react-router-dom'
@@ -7,10 +7,13 @@ import '../Styles/Catalog.css'
 
 const Catalog = ({ history }) => {
 
+  const [data, setData] = useState([])
+
+
+  // eslint-disable-next-line no-unused-vars
   const [featureFiles, setFeatureFiles] = useState([]);
 
   const clickHandler = () => {
-
     history.push('/')
   }
   const exectionHandler = () => {
@@ -36,16 +39,13 @@ const Catalog = ({ history }) => {
     console.log(featureFiles)
 }
   
-
-  const execute = ()=>{
-    alert("Job execution triggered !")
-    const fun = async () => {
-      const response = await fetch(`/executeJob`).then(data => data.json());
-      alert(JSON.stringify(response));
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await fetch('/catalog').then(data => data.json())
+      setData(data)
     }
-    fun();
-  }
-
+    fetchData()
+  },[])
 
     return (
         <div>
@@ -62,181 +62,30 @@ const Catalog = ({ history }) => {
   <thead>
        <tr>
       <th></th>
-      <th>ReportCatalog</th>
+      <th>App Name</th>
       <th>Description</th>
       <th>Featurefile</th>
-      <th>Immediate Execution</th>
       <th>TestType</th>
       <th>Action</th>
       <th>Schedule</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <td><input accessKey='hello world' type="checkbox"/></td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
-      <td>Adhoc</td>
+          <tbody>
+            {data.map(x => {
+              return <tr key={Math.random()}>
+                  <td><input accessKey={x.Runcommand} type="checkbox"/></td>
+      <td>{x.Appname}</td>
+      <td>{x.Appdesc}</td>
+      <td>{x.Runcommand}</td>
+      <td>{x.testtype}</td>
       <td><Link to='/basetable'>ShowReports</Link></td>
       <td><Link  to='/scheduler'>ScheduleJob</Link></td>
-    </tr>
-    <tr>
-      <td><input accessKey='hello world' type="checkbox"/></td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
-      <td>Adhoc</td>
-      <td><Link to='/basetable'>ShowReports</Link></td>
-      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
-    </tr>
-    <tr>
-      <td><input accessKey='hello world' type="checkbox"/></td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
-      <td>Adhoc</td>
-      <td><Link to='/basetable'>ShowReports</Link></td>
-      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
-    </tr>
-    <tr>
-      <td><input accessKey='hello world' type="checkbox"/></td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
-      <td>Adhoc</td>
-      <td><Link to='/basetable'>ShowReports</Link></td>
-      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
-    </tr>
-      <tr>
-      <td><input accessKey='hello world' type="checkbox"/></td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
-      <td>Adhoc</td>
-      <td><Link to='/basetable'>ShowReports</Link></td>
-      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
-    </tr>
-    <tr>
-      <td><input accessKey='hello world' type="checkbox"/></td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
-      <td>Adhoc</td>
-      <td><Link to='/basetable'>ShowReports</Link></td>
-      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
-    </tr>
-    <tr>
-      <td><input accessKey='hello world' type="checkbox"/></td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
-      <td>Adhoc</td>
-      <td><Link to='/basetable'>ShowReports</Link></td>
-      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
-    </tr>
-   <tr>
-      <td><input accessKey='hello world' type="checkbox"/></td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
-      <td>Adhoc</td>
-      <td><Link to='/basetable'>ShowReports</Link></td>
-      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
-    </tr>
-     <tr>
-      <td><input accessKey='hello world' type="checkbox"/></td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
-      <td>Adhoc</td>
-      <td><Link to='/basetable'>ShowReports</Link></td>
-      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
-    </tr>
-      <tr>
-      <td><input accessKey='hello world' type="checkbox"/></td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
-      <td>Adhoc</td>
-      <td><Link to='/basetable'>ShowReports</Link></td>
-      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
-    </tr>
-   <tr>
-      <td><input accessKey='hello world' type="checkbox"/></td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
-      <td>Adhoc</td>
-      <td><Link to='/basetable'>ShowReports</Link></td>
-      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
-    </tr>
-   <tr>
-      <td><input accessKey='hello world' type="checkbox"/></td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
-      <td>Adhoc</td>
-      <td><Link to='/basetable'>ShowReports</Link></td>
-      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
-    </tr>
-     <tr>
-      <td><input accessKey='hello world' type="checkbox"/></td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
-      <td>Adhoc</td>
-      <td><Link to='/basetable'>ShowReports</Link></td>
-      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
-    </tr>
-     <tr>
-      <td><input accessKey='hello world' type="checkbox"/></td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
-      <td>Adhoc</td>
-      <td><Link to='/basetable'>ShowReports</Link></td>
-      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
-    </tr>
-    <tr>
-      <td><input accessKey='hello world' type="checkbox"/></td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
-      <td>Adhoc</td>
-      <td><Link to='/basetable'>ShowReports</Link></td>
-      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
-    </tr>
-    <tr>
-      <td><input accessKey='hello world' type="checkbox"/></td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td>Adhoc</td>
-      <td className='opration'><button onClick={execute}>ExecuteJob</button></td>
-      <td>Adhoc</td>
-      <td><Link to='/basetable'>ShowReports</Link></td>
-      <td><Link  to='/scheduler'>ScheduleJob</Link></td>
-    </tr>
+              </tr>
+            })}
   </tbody>
         </Table>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <Button onClick={exectionHandler} style={{margin:3}}>Execute Job</Button>
-        <Button style={{margin:3}}>Select Report</Button>
         <Button style={{margin:3}} onClick={clickHandler}>Main Menu</Button>
         </div>
         

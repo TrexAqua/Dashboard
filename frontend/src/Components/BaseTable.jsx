@@ -14,6 +14,9 @@ const BaseTable = ({ history }) => {
     const dropdownClickHandler = (e) => {
         setJob(e)
     }
+    const resetHandler = () => {
+        setJob('')
+    }
     
     useEffect(() => {
         const getJobs = async () => {
@@ -24,12 +27,14 @@ const BaseTable = ({ history }) => {
     }, [])
     
     useEffect(() => {
-        const getData = async () => {
+        if (job === '') {
+            const getData = async () => {
             const { data } = await fetch('/basetable').then(data => data.json())
             setData(data)
         }
         getData()
-    },[])
+        }
+    },[job])
     useEffect(() => {
         if (job !== '' ) {
             const fetchData = async () => {
@@ -44,12 +49,16 @@ const BaseTable = ({ history }) => {
             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <h1 >Simcord Automation Testing Tool - SAAT</h1>
                 <h3>Base Table - Simpcord Test Automation</h3>
-                <DropdownButton title='Jobs'>
+                <div style={{display: 'flex'}}>
+                    <DropdownButton title='Jobs'>
+                    <Dropdown.Item eventKey={''} onSelect={dropdownClickHandler}>All</Dropdown.Item>
                     {jobs.map(job => (
                         <Dropdown.Item key={Math.random()} eventKey={job.Jobnm} onSelect={dropdownClickHandler}>{job.Jobnm}</Dropdown.Item>                      
                     ))}
                 </DropdownButton>
-                <h3>{job}</h3>
+                <Button  style={{cursor: job === '' ? 'default' : 'pointer'}}  onClick={resetHandler} disabled={job === '' ? true : false}>Reset</Button>
+                </div>
+                <h3 style={{marginTop: 10}}>{job}</h3>
             </div>
             
             <Table striped bordered hover size="sm">
